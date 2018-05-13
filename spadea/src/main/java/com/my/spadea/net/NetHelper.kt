@@ -1,11 +1,13 @@
 package com.my.spadea.net
 
-import com.my.spadea.net.callback.BaseCallback
+import com.my.spadea.net.callback.BaseCallBack
+import com.my.spadea.net.callback.HttpConnectCallBack
 import com.my.spadea.net.json.JsonUtil
 import okhttp3.MediaType
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import okhttp3.RequestBody
+import java.net.URLEncoder
 import java.util.concurrent.TimeUnit
 
 
@@ -36,16 +38,64 @@ import java.util.concurrent.TimeUnit
         /**
          * POST请求方法
          */
-        fun post( path:String, data :Any, callback:BaseCallback ){
+        fun post(url:String, data :Any?, callBack: BaseCallBack){
+            if (okHttpClient == null){
+                init()
+            }
+            val builder =  Request.Builder().url(url)
+            if (data!=null){
+                val data_json = JsonUtil.convertObjectToJson(data)
+                val data_length = data_json?.length
+                builder.addHeader(CONTENT_LENGTH,data_length.toString())
+                val body = RequestBody.create(MediaType.parse(CONTENT_TYPE),data_json)
+                builder.post(body)
+            }
+            val request =builder.build()
+            val call = okHttpClient?.newCall(request)
+            call?.enqueue(callBack)
+        }
+
+        /**
+         * get请求方法
+         */
+        fun <T : Any> get(url:String, params:Map<String,String>?, callBack: HttpConnectCallBack<T>){
                 if (okHttpClient == null){
                     init()
                 }
-                val data_json = JsonUtil.convertObjectToJson(data)
-                val data_length = data_json?.length
-                var body  = RequestBody.create(MediaType.parse(CONTENT_TYPE),data_json)
-                val request = Request.Builder().url(path).addHeader(CONTENT_LENGTH,data_length.toString()).post(body).build()
+                val urlPath = splitJoint(url,params)
+                val request = Request.Builder().url(urlPath).build()
                 val call = okHttpClient?.newCall(request)
-                call?.enqueue(callback)
+                call?.equals(callBack)
             }
 
-    }
+
+        /**
+         * 文件下载
+         */
+        fun download(){
+
+            }
+
+        private fun splitJoint(url:String,params:Map<String,String>?) : String{
+            if (params == null || params.isEmpty()){
+                return url
+            }
+
+            var sb = StringBuilder()
+            sb.append("$url?")
+            val entrySet =params.entries
+            for (item in entrySet){
+                sb.append(item.key)
+                sb.append("=")
+                try {
+                    sb.append(URLEncoder.encode(item.value,"UTF-8"))
+                }catch (e : Exception){
+
+                }
+                sb.append("&")
+            }
+            sb.deleteCharAt(sb.length-1)
+            return sb.toString()
+        }
+
+}
