@@ -19,18 +19,5 @@ interface BaseActivityInterface {
      */
     fun initView(savedInstanceState : Bundle?)
 
-    /**
-     * 获取传递来的值为控件赋值
-     */
-    fun initData(savedInstanceState : Bundle?,intent: Intent?)
 
-    /**
-     * 为控件设置事件
-     */
-    fun initListener()
-
-    /**
-     *  获取Intent传递来的值 进行网络访问
-     */
-    fun loadNetRes(intent: Intent?)
 }
