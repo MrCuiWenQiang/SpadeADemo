@@ -27,6 +27,9 @@
             initListener()
         }
 
+        /**
+         * 将网络资源访问放在此
+         */
         override fun onResume() {
             super.onResume()
             if (!isLoad){
