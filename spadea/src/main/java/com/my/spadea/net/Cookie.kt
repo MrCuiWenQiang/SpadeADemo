@@ -15,7 +15,7 @@ class Cookie : CookieJar {
 
     override fun saveFromResponse(url: HttpUrl?, cookies: MutableList<Cookie>?) {
         if (cookies!=null && cookies.size>0){
-            this.cookies = cookies;
+            this.cookies = cookies
         }
     }
 
