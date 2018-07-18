@@ -1,1 +1,1 @@
-include ':app', ':spadea'
+include ':app', ':spadea', ':heartace'
