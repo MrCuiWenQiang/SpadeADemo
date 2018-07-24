@@ -4,6 +4,7 @@
     <style name="HeartAceSStyle" parent="Theme.AppCompat.Light.NoActionBar">
         <item name="dialog_action_text_color">@color/dg_action_text_color</item>
         <item name="dialog_action_text_negative_color">@color/dg_action_text_negative_color</item>
+        <item name="dialog_content_select">@drawable/dg_content_select</item>
         <item name="dialog_action_text_size">14sp</item>
         <item name="dialog_message_textsize">16sp</item>
         <item name="dialog_padding_horizontal">12dp</item>

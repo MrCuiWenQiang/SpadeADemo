@@ -2,6 +2,7 @@ package com.my.heartace.util
 
 import android.content.Context
 import android.content.res.ColorStateList
+import android.graphics.drawable.Drawable
 import android.support.v4.content.ContextCompat
 import android.util.TypedValue
 
@@ -29,6 +30,13 @@ class ResUtil {
             val typedValue = TypedValue()
             context.theme.resolveAttribute(attRes, typedValue, true)
             return ContextCompat.getColorStateList(context, typedValue.resourceId)!!
+        }
+
+        fun getAttrDrawable(context: Context, attRes: Int): Drawable? {
+            val attrs = intArrayOf(attRes)
+            val typedValue = context.obtainStyledAttributes(attrs)
+            val drawable = typedValue.getDrawable(0)
+            return drawable
         }
     }
 }

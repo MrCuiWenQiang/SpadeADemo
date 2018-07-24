@@ -11,6 +11,7 @@
     <attr name="dialog_title_margin_top" format="dimension"/>
     <attr name="dialog_action_text_color" format="reference"/>
     <attr name="dialog_action_text_negative_color" format="reference"/>
+    <attr name="dialog_content_select" format="reference"/>
     <attr name="dialog_padding_horizontal" format="dimension"/>
     <attr name="dialog_message_textsize" format="dimension"/>
     <attr name="dialog_action_container_margin_bottom" format="dimension"/>

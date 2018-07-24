@@ -19,7 +19,7 @@ import com.my.heartace.util.ScreenUtil
  * Remarks  :
  * Created by Mr.C on 2018/7/21 0021.
  */
-abstract class Builder<T> constructor(val context: Context) {
+abstract class Builder<T> constructor(val context: Context) : DialogCallBack {
 
     protected var contentAreaMaxHeight: Double = ScreenUtil.getWindowHeight(context) * 0.75
     protected var title: String? = null
@@ -76,7 +76,7 @@ abstract class Builder<T> constructor(val context: Context) {
         createTopView(dialog, topGroup)
         createContentView(dialog, contentGroup)
         createBottomView(dialog, bottomGroup)
-
+        dialog.callBack = this
         return dialog
     }
 
@@ -92,9 +92,10 @@ abstract class Builder<T> constructor(val context: Context) {
                 setPadding(ResUtil.getAttrDimen(context, R.attr.dialog_padding_horizontal),
                         ResUtil.getAttrDimen(context, R.attr.dialog_title_margin_top),
                         ResUtil.getAttrDimen(context, R.attr.dialog_padding_horizontal),
-                        0)
-                val params = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                        ResUtil.getAttrDimen(context, R.attr.dialog_title_margin_top))
+                val params = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT)
                 layoutParams = params
+                gravity = Gravity.CENTER_VERTICAL
                 setSingleLine(true)
                 layoutGroup.addView(this)
             }
@@ -124,4 +125,9 @@ abstract class Builder<T> constructor(val context: Context) {
         }
     }
 
+    open override fun create(dialog: Dialog) {
+    }
+
+    open override fun destory(dialog: Dialog) {
+    }
 }
