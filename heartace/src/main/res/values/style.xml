@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="MyDialog" parent="android:Theme.Dialog">
+        <item name="android:backgroundDimAmount">0.6</item>
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowNoTitle">true</item><!-- 不用window title，使用自己的layout来做title -->
+        <item name="android:windowIsFloating">true</item><!-- 在中间弹框、背后有遮罩的效果 -->
+        <item name="android:minWidth">280dp</item>
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_marginLeft">40dp</item>
+        <item name="android:layout_marginRight">40dp</item>
+    </style>
+</resources>
