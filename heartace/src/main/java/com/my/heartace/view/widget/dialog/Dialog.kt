@@ -81,7 +81,7 @@ class Dialog : DialogFragment() {
     }
 
     /**
-     * 单选对话框
+     * 带选择的消息对话框
      */
     class CheckBoxMessageDialogBuilder(var mContext: Context) : Builder<CheckBoxMessageDialogBuilder>(mContext) {
 
@@ -143,5 +143,6 @@ class Dialog : DialogFragment() {
             }
         }
     }
+
 
 }
