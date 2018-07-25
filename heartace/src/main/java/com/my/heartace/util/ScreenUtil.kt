@@ -10,9 +10,7 @@ import android.view.WindowManager
  * Remarks  :
  * Created by Mr.C on 2018/7/21 0021.
  */
-class ScreenUtil {
-    companion object {
-
+object ScreenUtil {
         /**
          * 获取屏幕高度（去除标题栏高度）
          */
@@ -44,5 +42,4 @@ class ScreenUtil {
             }
             return size
         }
-    }
 }

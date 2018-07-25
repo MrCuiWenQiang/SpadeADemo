@@ -11,8 +11,7 @@ import android.util.TypedValue
  * Remarks  :
  * Created by Mr.C on 2018/7/23 0023.
  */
-class ResUtil {
-    companion object {
+object ResUtil {
 
         fun getAttrDimen(context: Context, attrRes: Int): Int {
             val typedValue = TypedValue()
@@ -38,5 +37,4 @@ class ResUtil {
             val drawable = typedValue.getDrawable(0)
             return drawable
         }
-    }
 }

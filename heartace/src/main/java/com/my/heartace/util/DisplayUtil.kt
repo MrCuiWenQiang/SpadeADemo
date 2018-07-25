@@ -10,8 +10,8 @@ import android.view.WindowManager
  * Remarks  :
  * Created by Mr.C on 2018/7/23 0023.
  */
-class DisplayUtil {
-    companion object {
+object DisplayUtil {
+
         /**
          * 屏幕密度,系统源码注释不推荐使用
          */
@@ -49,5 +49,4 @@ class DisplayUtil {
                     .defaultDisplay.getMetrics(displayMetrics)
             return displayMetrics
         }
-    }
 }
