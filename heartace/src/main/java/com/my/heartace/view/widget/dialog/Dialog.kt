@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 import com.my.heartace.R
 import com.my.heartace.util.DisplayUtil
@@ -52,7 +53,7 @@ class Dialog : DialogFragment() {
     /**
      * 消息对话框
      */
-    class MesssageBuilder(context: Context) : Builder<MesssageBuilder>(context) {
+    class MesssageBuilder(val context: Context) : Builder<MesssageBuilder>(context) {
         var mScrollView: WrapContentScrollView = WrapContentScrollView(context)
         var textView: TextView = TextView(context)
 
@@ -116,7 +117,7 @@ class Dialog : DialogFragment() {
             return setMessage(mContext.resources.getString(resid))
         }
 
-        fun getChecked()=textView?.isSelected
+        fun getChecked() = textView?.isSelected
 
         fun setChecked(checked: Boolean): CheckBoxMessageDialogBuilder {
             if (checked != mIsChecked) {
@@ -144,5 +145,63 @@ class Dialog : DialogFragment() {
         }
     }
 
+    /**
+     * 展示进度对话框
+     */
+    class ProgressDialogBuilder(var mContext: Context) : Builder<ProgressDialogBuilder>(mContext) {
+        private var message: String? = null
 
+        private var textView: TextView? = null
+        private var progressView: ProgressBar? = null
+        private var linearLayout: LinearLayout? = null
+
+        init {
+            linearLayout = LinearLayout(mContext)
+            linearLayout?.let {
+                it.orientation = LinearLayout.HORIZONTAL
+                it.gravity = Gravity.CENTER_VERTICAL
+                it.layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+
+            }
+            initProgress()
+            initText()
+        }
+
+        fun initText() {
+            textView = TextView(mContext)
+            textView?.let {
+                it.setLineSpacing(DisplayUtil.dpToPx(2).toFloat(), 1.0f)
+                it.setTextColor(ResUtil.getAttrColor(mContext, R.attr.dialog_message_color_gray))
+                it.setTextSize(TypedValue.COMPLEX_UNIT_PX, ResUtil.getAttrDimen(mContext, R.attr.dialog_message_textsize).toFloat())
+                it.layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                it.gravity = Gravity.CENTER_VERTICAL
+                it.setPadding(ResUtil.getAttrDimen(mContext, R.attr.dialog_content_grpup_padding_left), 0,
+                        ResUtil.getAttrDimen(mContext, R.attr.dialog_content_grpup_padding_right), 0
+                )
+                linearLayout?.addView(it)
+            }
+        }
+
+        fun initProgress() {
+            progressView = ProgressBar(mContext)
+            progressView?.let {
+                it.layoutParams = LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
+                linearLayout?.addView(it)
+            }
+        }
+
+        fun setMessage(message: String?): ProgressDialogBuilder {
+            if (!TextUtils.isEmpty(message)) {
+                textView?.text = message
+            }
+            return this
+        }
+
+        override fun createContentView(dialog: Dialog, layoutGroup: ViewGroup) {
+            val padding =if (!hasTitle()) ResUtil.getAttrDimen(mContext, R.attr.dialog_content_padding_notitle_top) else 0
+            linearLayout?.setPadding(ResUtil.getAttrDimen(mContext, R.attr.dialog_content_grpup_padding_left), padding,
+                    ResUtil.getAttrDimen(mContext, R.attr.dialog_content_grpup_padding_right), padding)
+            layoutGroup.addView(linearLayout)
+        }
+    }
 }

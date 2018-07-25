@@ -6,6 +6,8 @@
     <attr name="dialog_content_padding_notitle_top" format="dimension"/>
     <attr name="dialog_content_padding_bottom" format="dimension"/>
     <attr name="dialog_content_padding_left" format="dimension"/>
+    <attr name="dialog_content_grpup_padding_left" format="dimension"/>
+    <attr name="dialog_content_grpup_padding_right" format="dimension"/>
     <attr name="dialog_content_padding_right" format="dimension"/>
     <attr name="dialog_title_textsize" format="dimension"/>
     <attr name="dialog_title_margin_top" format="dimension"/>

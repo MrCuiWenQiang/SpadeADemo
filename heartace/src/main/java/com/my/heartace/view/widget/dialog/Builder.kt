@@ -19,7 +19,7 @@ import com.my.heartace.util.ScreenUtil
  * Remarks  :
  * Created by Mr.C on 2018/7/21 0021.
  */
-abstract class Builder<T> constructor(val context: Context) : DialogCallBack {
+abstract class Builder<T> constructor(private val context: Context) : DialogCallBack {
 
     protected var contentAreaMaxHeight: Double = ScreenUtil.getWindowHeight(context) * 0.75
     protected var title: String? = null

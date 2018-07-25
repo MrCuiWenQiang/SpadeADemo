@@ -22,18 +22,8 @@ class MainActivity : BaseActivity() {
 
     override fun initListener() {
         tv_hello.setOnClickListener {
-           var mDialog = Dialog.CheckBoxMessageDialogBuilder(this)
-            mDialog.setTitle("测试").setMessage("测试内容")
-                    .addAction("确定", object : DialogAction.ActionListener {
-                        override fun onClick(dialog: Dialog, index: Int) {
-                            dialog.dismiss()
-                        }
-                    })
-                    .addAction("取消",ACTION_TYPE_BLOCK, object : DialogAction.ActionListener {
-                        override fun onClick(dialog: Dialog, index: Int) {
-                            dialog.dismiss()
-                        }
-                    })
+           var mDialog = Dialog.ProgressDialogBuilder(this)
+            mDialog.setMessage("测试内容")
             mDialog.show(supportFragmentManager, "test")
         }
     }

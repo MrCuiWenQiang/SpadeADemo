@@ -16,6 +16,8 @@
         <item name="dialog_content_padding_left">24dp</item>
         <item name="dialog_content_padding_right">24dp</item>
         <item name="dialog_title_margin_top">12dp</item>
+        <item name="dialog_content_grpup_padding_left">12dp</item>
+        <item name="dialog_content_grpup_padding_right">12dp</item>
         <item name="dialog_title_textsize">17sp</item>
         <item name="dialog_title_color_black">@color/black</item>
         <item name="dialog_message_color_gray">@color/gray_5</item>
